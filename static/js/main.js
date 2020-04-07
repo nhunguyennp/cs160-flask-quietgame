@@ -11,8 +11,12 @@ const canvas = document.getElementById('screen');
 const context = canvas.getContext('2d');
 
 
-// Promize.all to loadBackgroundSprites() and loadLevel()
-// at the same time
+// Promize.all to createMario() and loadLevel()
+//  and loadQueue() at the same time
+
+// loadQueue() creates a queue of letters (currently from A-Z)
+// from JSON file. You can printQueue() to print the entire queue
+// and check the first letter in queue using front()
 Promise.all([
     createMario(),
     loadLevel('1-1'),
@@ -33,6 +37,9 @@ Promise.all([
         const input = setupKeyboard(mario);
 
         console.log(queue.printQueue());
+
+        // Here a keyboard is set up, which maps the input letter 
+        // to the character's movement
         const inputLetter = setupAlphabetKeyboard(queue, mario);
 
             inputLetter.listenTo(window);  
@@ -49,6 +56,8 @@ Promise.all([
                 }
                 level.comp.draw(context, camera);
         }
+
+        // Set up Webcam object using getUserMedia 
         var video = document.querySelector('#video');
         if(navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
@@ -59,4 +68,18 @@ Promise.all([
         });
     }
         timer.start();
+
+        // So let's say if you want to check whether the correct sign has been displayed, 
+        // you get the webcam data, evaluate it with the model, then check whether the result 
+        // matches with the first letter of the queue. If yes, move Mario (Mario has a leap method 
+        // that you can just call to make Mario jump over the letter)
+        
+        // Example:
+        // if (result == queue.front())
+        // { 
+        //    queue.dequeue();
+        //    mario.leap.start()
+        //  }
 });
+
+
