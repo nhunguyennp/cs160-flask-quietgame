@@ -74,7 +74,7 @@ function createQueue(queue, backgrounds)
             
 export function loadSpriteSheet(name)
 {
-    return loadJSON(`http://127.0.0.1:5000/static/sprites/${name}.json`)
+    return loadJSON(`/static/sprites/${name}.json`)
     .then(sheetSpec => Promise.all([
         sheetSpec,
         loadImage(sheetSpec.imageURL),
@@ -118,7 +118,7 @@ export function loadSpriteSheet(name)
 }
 
 export function loadLevel(name) {
-    return loadJSON(`http://127.0.0.1:5000/static/sprites/${name}.json`)
+    return loadJSON(`/static/sprites/${name}.json`)
     .then(levelSpec => Promise.all([
         levelSpec,
         loadSpriteSheet(levelSpec.spriteSheet),
@@ -139,7 +139,7 @@ export function loadLevel(name) {
 }
 
 export function loadQueue(name) {
-    return loadJSON(`http://127.0.0.1:5000/static/sprites/${name}.json`)
+    return loadJSON(`/static/sprites/${name}.json`)
     .then(levelSpec => Promise.all([
         levelSpec, 
         loadSpriteSheet(levelSpec.spriteSheet),
