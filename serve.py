@@ -13,9 +13,9 @@ app = Flask(__name__)
 def hello():
     db = mysql.connector.connect(
         host="localhost",
-        port=8889,
+        port=3306,
         user="root",
-        passwd="root",
+        passwd="redwoodclock",
         database="asl"
     )
 
@@ -32,7 +32,7 @@ def hello():
         score = request.form.get('theScore', None)
 
         mycursor = db.cursor();
-        insert = ("INSERT INTO info2 (username, score) VALUES(%s, %s)") #change info to info2 for score type change
+        insert = ("INSERT INTO scoreboard (username, score) VALUES(%s, %s)") #change info to info2 for score type change
         data = (userName, score)
         mycursor.execute(insert, data)
         db.commit()
@@ -51,16 +51,16 @@ def hello():
 def hi():
     db = mysql.connector.connect(
         host="localhost",
-        port=8889,
+        port=3306,
         user="root",
-        passwd="root",
+        passwd="redwoodclock",
         database="asl"
     )
     #mycursor = db.cursor();
 
 
     cur = db.cursor()
-    cur.execute("SELECT * FROM info2 ORDER BY score ASC") #from info
+    cur.execute("SELECT * FROM scoreboard ORDER BY score ASC") #from info
     data = cur.fetchall()
     #render_template('template.html', data=data)
 
@@ -70,4 +70,4 @@ def hi():
 
 # run the application
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')
