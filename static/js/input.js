@@ -1,4 +1,6 @@
 import Keyboard from './KeyboardState.js';
+import Stopwatch from './Stopwatch.js';
+
 export function setupKeyboard(entity)
 {
         const input = new Keyboard();
@@ -26,7 +28,18 @@ export function setupKeyboard(entity)
 
 export function setupAlphabetKeyboard(queue, entity)
 {
-    const input = new Keyboard();
+  const input = new Keyboard();
+  const stopwatch = new Stopwatch( document.querySelector('.stopwatch'), document.querySelector('.results'));
+  const time = document.getElementById('time');
+  const gameIsDone = false;
+  const inputForm = document.getElementById('inputForm');
+  const startButton = document.getElementById('startButton');
+  const stopWatchValue = document.getElementById('theScore');
+  let temp;
+  let buttonClicked = false;
+  stopwatch.start();
+  inputForm.style.visibility="hidden";
+
 
         input.addMapping('KeyA', keyState => {
             if (keyState && queue.front() == 'A')
@@ -35,6 +48,7 @@ export function setupAlphabetKeyboard(queue, entity)
                 console.log(queue.printQueue());
                 entity.leap.start();
                 console.log(keyState);
+                console.log("Q length: " + queue.items.length);
             }
             });
         input.addMapping('KeyB', keyState => {
@@ -44,6 +58,9 @@ export function setupAlphabetKeyboard(queue, entity)
                 console.log(queue.printQueue());
                 entity.leap.start();
                 console.log(keyState);
+
+                console.log("Q length: " + queue.items.length);
+
             }
             });
         input.addMapping('KeyC', keyState => {
@@ -53,6 +70,11 @@ export function setupAlphabetKeyboard(queue, entity)
                 console.log(queue.printQueue());
                 entity.leap.start();
                 console.log(keyState);
+
+                stopWatchValue.value = stopwatch.returnTime();
+                console.log(stopWatchValue.value);
+                inputForm.style.visibility="visible";
+                stopwatch.stop()
             }
             });
         input.addMapping('KeyD', keyState => {
@@ -242,6 +264,19 @@ export function setupAlphabetKeyboard(queue, entity)
                 console.log(queue.printQueue());
                 entity.leap.start();
                 console.log(keyState);
+
+
+                // if (queue.items.length == 22) {
+                //   console.log("stopwatch time is " + stopwatch.returnTime());
+                //   //window.location.href = "index.php/name=" + 'testing';
+                //   //window.open("index.php/name=" + 'testing');
+                //   //window.open("name.html");
+                //   //inputForm = document.getElementById('inputForm');
+                //   inputForm.style.display = "inline-block";
+                //
+                //   gameIsDone = true;
+                //   stopwatch.stop();
+                // }
             }
             });
 
