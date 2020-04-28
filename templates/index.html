@@ -3,13 +3,14 @@
 <head>
     <title>A Quiet Game</title>
     <link rel="stylesheet" href="/static/styles.css">
-    
+
     <script type="module" src="{{url_for('static', filename='js/main.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.10.0/dist/tf.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -35,6 +36,7 @@
           </p>
         </div><!-- ./panel-cell -->
 
+
       <div class="panel-cell panel-cell-center">
    	 	<div class="webcam-box-outer">
           <div class="webcam-box-inner">
@@ -44,9 +46,23 @@
 		  </div>
     </div>
 
+    <div class="stopwatch" color="orange"></div> 
+
+    <!-- <ul class ="result" style.color="white"></ul> -->
+    <input id="startButton" type="submit" value="Start Game">
+
         <div class="panel-cell panel-cell-right panel-cell-fill">
-        </div><!-- ./panel-cell -->
+        </div>
     </div>
+
+
+    <form method="POST" action=""
+      style="color:white" enctype='multipart/form-data' name="inputForm" id="inputForm">
+      Enter Your Name: <input type="text" name="theName">
+      <br>
+      <input id="theScore" name="theScore" hidden>
+      <input type="submit" value="Enter">
+    </form>
 
 
     <script type="module" src="{{url_for('static', filename='js/main.js')}}"></script>
@@ -54,6 +70,6 @@
 
     <p id="copyright"><b>A QUIET GAME</b> by Darpan Goyal, Nhu Nguyen, and Pratyusha Pogaru.</p>
 
-    
+
 </body>
 </html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<p>A Quiet Leadership Board</p>
+
+<!-- {% for item in data %}
+<tr>
+    <td>{{item[0]}}</td>
+    <td>{{item[1]}}</td>
+    ...
+</tr>
+{% endfor %} -->
+
+<table>
+    <thead>
+    <tr>
+        <th>UserName</th>
+        <th>Score</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for row in output_data %}
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</html>
